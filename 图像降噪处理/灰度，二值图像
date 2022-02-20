@@ -1,0 +1,13 @@
+clear all%清理内存
+RGB=imread('text.jpg')%inread读取图片，注意格式
+J=rgb2gray(RGB)%将真彩色图像 RGB 转换为灰度图像 rgb2gray 函数通过消除色调和饱和度信息，同时保留亮度，来将 RGB 图像转换为灰度图。
+subplot(2,2,1);imshow(RGB);%subplot（m，n，p）图像窗口m行n列从左到右第p个（图形位置）
+xlabel('(a)彩色');%标题
+subplot(2,2,2);imshow(J);%inshow显示灰度图片
+xlabel('(a)灰色');
+level=graythresh(RGB);% %获取灰度图像gray的阈值
+BW=im2bw(RGB,level);%BW = im2bw(RGB,level) 将真彩色图像 RGB 转换为二值图像。
+subplot(2,2,3);
+imshow(BW);
+xlabel('(a)二值');
+imwrite(BW,'erzhi.bmp');%将二值bw写入当前文件夹bmp中
