@@ -1,0 +1,26 @@
+clear all
+I=imread('fengjing.bmp');%彩色照片
+subplot(3,3,1);
+J=rgb2gray(I);%因为图片不是灰度值所以使用中值滤波前先进行灰度处理
+imshow(J);
+title('(a)FIRST');%显示原始图像
+J1=imnoise(J,'salt & pepper',0.03);%对原始图像加均值为0，方差为0.03的椒盐噪音
+subplot(3,3,2);
+imshow(J1);
+title('(b)带椒盐噪声图像');
+M=filter2(fspecial('average',5),J1);
+subplot(3,3,3);imshow(uint8(M));
+title('(d)均值滤波处理椒盐噪声');
+K=medfilt2(J1,[5 5]);%用3*3滤波窗口对图片J进行中值滤波
+subplot(3,3,4);imshow(K,[]);%[]自动适应比例显示图像
+title('(e)中值滤波');
+subplot(3,3,5);imshow(J);
+title('(f)原始图像');
+J2=imnoise(J,'gaussian',0.04);%对原始图像加均值为0，方差为0.04的高斯噪音
+subplot(3,3,6);imshow(J2);
+title('(g)高斯噪声图像');
+K1=filter2(fspecial('average',5),J2);%用5*5的滤波窗口对J3进行均值处理
+subplot(3,3,7);imshow(uint8(K1));
+title('(h)平滑滤波');
+K3=medfilt2(J2,[5 5]);%用3*3滤波窗口对图片J进行中值滤波
+subplot(3,3,8);imshow(K3,[]);%[]自动适应比例显示图像
