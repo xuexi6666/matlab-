@@ -270,4 +270,4 @@ function pushbutton7_Callback(hObject, eventdata, handles)
     '*.*',      'All Files(*.*)' },'保存文件');
 str =strcat(p,f);
 pix=getframe(handles.axes2);%getframe捕获轴上的图像
-imwrite(pix.cdata,str,'jpg')
+imwrite(pix.cdata,str,'jpg')%yff原创
